@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        button {
+            width: 50px;
+            height: 50px;
+        }
+        
+        doublebutton {
+            width: 100%;
+        }
+        
+        table {
+            background: gray;
+        }
+        
+        #tbDisplay {
+            height: 50px;
+            width: 98%;
+            font-size: 180%;
+        }
+
+        #container{
+            width: 120px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <table>
+            <tr>
+                <td colspan="4">
+                    <input type="text" id="tbDisplay">
+                </td>
+            </tr>
+            <tr>
+                <td><button class="button numbutton" data-num="7">7</button></td>
+                <td><button class="button numbutton" data-num="8">8</button></td>
+                <td><button class="button numbutton" data-num="9">9</button></td>
+                <td><button class="button calcbutton" data-op="*">X</button></td>
+            </tr>
+            <tr>
+                <td><button class="button numbutton" data-num="4">4</button></td>
+                <td><button class="button numbutton" data-num="5">5</button></td>
+                <td><button class="button numbutton" data-num="6">6</button></td>
+                <td><button class="button calcbutton" data-op="-">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="button numbutton" data-num="1">1</button></td>
+                <td><button class="button numbutton" data-num="2">2</button></td>
+                <td><button class="button numbutton" data-num="3">3</button></td>
+                <td><button class="button calcbutton" data-op="+">+</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="doublebutton numbutton" data-num="0">0</button></td>
+                <td><button class="button numbutton" data-num=",">,</button></td>
+                <td><button class="button calcbutton" data-op="=">=</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

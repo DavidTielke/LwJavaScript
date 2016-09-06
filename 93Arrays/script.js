@@ -13,8 +13,8 @@ var last = namen.pop();
 
 var first = namen.shift();
 
-namen.sort(function(item){
-    return item.length;
+namen.sort(function(p1, p2){
+    return p1.length > p2.length;
 });
 
 namen.forEach(function(item){

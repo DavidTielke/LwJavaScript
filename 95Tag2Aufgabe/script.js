@@ -7,7 +7,6 @@ function Person(id, name, age){
     }
 }
 
-
 var anzahlPersonen = parseInt(prompt("Anzahl Personen"));
 var personen = new Array();
 

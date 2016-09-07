@@ -31,7 +31,7 @@ $(function () {
     }
 
 
-    $('.numbutton').click(function () {
+    $(".numbutton").click(function () {
         var value = $(this).data("num");
 
         if (resultIsDisplayed) {
@@ -45,7 +45,7 @@ $(function () {
         } else {
             actualNumber += value + "";
         }
-        displayNumber(actualNumber);
+        displayNumber();
     });
 
     $('.calcbutton').click(function () {
@@ -65,8 +65,6 @@ $(function () {
                 operator = op;
             }
         }
-
-
 
         displayNumber();
     });

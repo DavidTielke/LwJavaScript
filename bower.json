@@ -1,0 +1,22 @@
+{
+  "name": "lwjavascript",
+  "authors": [
+    "DavidTielke <mail@david-tielke.de>"
+  ],
+  "description": "Schulungsprojekt JavaScript für die KVNo",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-validation": "^1.15.1",
+    "bootstrap" : ""
+  }
+}

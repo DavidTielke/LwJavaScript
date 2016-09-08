@@ -2,13 +2,15 @@
 
 $(function () {
 
-    var persons = new Array();
+    var repository = new PersonRepository();
+    var persons = null;
     var idCounter = 1;
 
-    function Person(name, age) {
-        this.id = idCounter++;
-        this.name = name;
-        this.age = age;
+    function loadData() {
+        repository.getAll(function (data) {
+            persons = data;
+            fillTable();
+        });
     }
 
     function createPersonDataRow(person) {
@@ -30,24 +32,23 @@ $(function () {
         $('.deleteButton').click(deletePersonConfirm);
     }
 
-    function deletePersonConfirm(){
+    function deletePersonConfirm() {
         var id = $(this).data("id");
 
-        var person = persons.filter(function(person){ 
-            return person.id == id;
-         })[0];
-        $('.lbPersonName').text(person.name)
-        $('#deleteConfirmButton').data("id", id);
-        $('#deleteConfirmModal').modal();
+        var person = repository.getById(id, function (person) {
+            $('.lbPersonName').text(person.name)
+            $('#deleteConfirmButton').data("id", id);
+            $('#deleteConfirmModal').modal();
+        });
     }
 
     function deletePersonClick() {
         var id = $(this).data("id");
-        persons = persons.filter(function (person) {
-            return person.id != id;
-        });
-        $("tr#row" + id).hide(1000, function () {
-            this.remove();
+
+        repository.remove(id, function () {
+            $("tr#row" + id).hide(1000, function () {
+                this.remove();
+            });
         });
     }
 
@@ -61,16 +62,37 @@ $(function () {
             return;
         }
 
-        var person = new Person(form.name(), form.age());
-        persons.push(person);
-        var row = createPersonDataRow(person);
-        $("#tblPersons").append(row).children().last().hide().show(1000);
-        $("button[data-id='" + person.id + "']").click(deletePersonClick);
+        var person = new Person(0, form.name(), form.age());
+
+        repository.add(person, function (id) {
+            person.id = id;
+
+            var row = createPersonDataRow(person);
+            $("#tblPersons").append(row).children().last().hide().show(1000);
+            $("button[data-id='" + person.id + "']").click(deletePersonConfirm);
+        });
     });
 
-    persons.push(new Person("David", 32));
-    persons.push(new Person("Lena", 29));
-    persons.push(new Person("Maximilian", 3));
-    persons.push(new Person("Hasi", 2));
-    fillTable();
+    $("#tbSearch").keyup(function (e) {
+        $('#tblPersons').children().removeClass("success");
+
+        var searchPattern = $('#tbSearch').val();
+        if (!searchPattern) {
+            return;
+        }
+
+        var foundIds = persons.filter(function (item) {
+            var containedInId = item.id.toString().indexOf(searchPattern) !== -1;
+            var containedInName = item.name.indexOf(searchPattern) !== -1;
+            var containedInAge = item.age.toString().indexOf(searchPattern) !== -1;
+            return containedInId || containedInName || containedInAge;
+        }).map(function (item) {
+            return item.id;
+        });
+        foundIds.forEach(function (id) {
+            $('#row' + id).addClass("success");
+        });
+    });
+
+    loadData();
 });

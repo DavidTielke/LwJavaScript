@@ -34,6 +34,15 @@ var person = [
     },
 ];
 
+var auto = {
+    marke : "BMW",
+    modell: "525"
+};
+
+var auto2 = new Object();
+auto2.marke = "BMW";
+auto2.modell = "525";
+
 // Konstruktorfunktionen
 function Person(id, name, age){
     this.id = id;

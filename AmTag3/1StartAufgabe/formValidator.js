@@ -28,6 +28,7 @@ function FormValidator() {
         return ageValid;
     }
 
+
     this.name = function () {
         return $('#tbName').val();
     };

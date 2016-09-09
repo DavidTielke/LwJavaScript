@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "jquery-validation": "^1.15.1",
-    "bootstrap" : ""
+    "bootstrap" : "",
+    "requirejs" : "latest"
   }
 }
